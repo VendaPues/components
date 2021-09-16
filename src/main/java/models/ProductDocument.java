@@ -1,5 +1,6 @@
 package models;
 
+import dto.ProductDto;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -7,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 
 @Document
-public class Product {
+public class ProductDocument {
 
     @Id
     String id;
@@ -19,9 +20,31 @@ public class Product {
 
     Double price;
 
-    Long stock;
+    Double salesPrice;
+
+    int stock;
 
     Date createdAt;
+
+    public ProductDocument() {
+    }
+
+    public ProductDocument(ProductDto dto) {
+        this.productName = dto.getProductName();
+        this.description = dto.getDescription();
+        this.price = dto.getPrice();
+        this.salesPrice = dto.getSalesPrice();
+        this.stock = dto.getStock();
+        this.createdAt = new Date();
+    }
+
+    public void update(ProductDto dto) {
+        this.productName = dto.getProductName();
+        this.description = dto.getDescription();
+        this.price = dto.getPrice();
+        this.salesPrice = dto.getSalesPrice();
+        this.stock = dto.getStock();
+    }
 
     public String getProductName() {
         return productName;
@@ -47,11 +70,11 @@ public class Product {
         this.price = price;
     }
 
-    public Long getStock() {
+    public int getStock() {
         return stock;
     }
 
-    public void setStock(Long stock) {
+    public void setStock(int stock) {
         this.stock = stock;
     }
 
@@ -61,6 +84,14 @@ public class Product {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Double getSalesPrice() {
+        return salesPrice;
+    }
+
+    public void setSalesPrice(Double salesPrice) {
+        this.salesPrice = salesPrice;
     }
 }
 

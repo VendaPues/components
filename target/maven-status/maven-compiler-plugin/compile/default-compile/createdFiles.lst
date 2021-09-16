@@ -1,0 +1,6 @@
+models\ProductDocument.class
+dto\ProductDto.class
+models\UserDocument.class
+dto\SaleDto.class
+utils\RoleEnum.class
+models\SaleDocument.class
