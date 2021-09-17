@@ -1,6 +1,9 @@
-models\ProductDocument.class
+utils\Constants.class
 dto\ProductDto.class
 models\UserDocument.class
-dto\SaleDto.class
 utils\RoleEnum.class
 models\SaleDocument.class
+models\ProductDocument.class
+security\JwtRequestFilter.class
+security\TokenAuthentication.class
+dto\SaleDto.class
