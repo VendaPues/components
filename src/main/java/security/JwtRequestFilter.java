@@ -25,61 +25,67 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static utils.Constants.CLAIMS_ROLES_KEY;
-import static utils.Constants.COOKIE_NAME;
-
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
-    @Value("${app.secret}")
-    String secret;
+  @Value("${app.secret}")
+  String secret;
 
-    public JwtRequestFilter() {
-    }
+  @Value("${app.cookie.name}")
+  String cookieName;
 
-    @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-            throws ServletException, IOException {
-        String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+  @Value("${app.claims.roles.key}")
+  String claimsRolesKey;
 
-        if (HttpMethod.OPTIONS.name().equals(request.getMethod())) {
-            response.setStatus(HttpServletResponse.SC_OK);
-            filterChain.doFilter(request, response);
-        } else {
-            try {
-                Optional<Cookie> optionalCookie =
-                        request.getCookies() != null ? Arrays.stream(request.getCookies()).filter(
-                                cookie -> Objects.equals(cookie.getName(), COOKIE_NAME)).findFirst() : Optional.empty();
+  public JwtRequestFilter() {}
 
-                String headerJwt = null;
-                if (authHeader != null && authHeader.startsWith("Bearer ")) {
-                    headerJwt = authHeader.substring(7);
-                }
-                String token = optionalCookie.isPresent() ? optionalCookie.get().getValue() : headerJwt;
+  @Override
+  protected void doFilterInternal(
+      HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+      throws ServletException, IOException {
+    String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
 
-                if (token != null) {
-                    Jws<Claims> claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
-                    Claims claimsBody = claims.getBody();
-                    String subject = claimsBody.getSubject();
-                    List<String> roles = claims.getBody().get(CLAIMS_ROLES_KEY, ArrayList.class);
+    if (HttpMethod.OPTIONS.name().equals(request.getMethod())) {
+      response.setStatus(HttpServletResponse.SC_OK);
+      filterChain.doFilter(request, response);
+    } else {
+      try {
+        Optional<Cookie> optionalCookie =
+            request.getCookies() != null
+                ? Arrays.stream(request.getCookies())
+                    .filter(cookie -> Objects.equals(cookie.getName(), cookieName))
+                    .findFirst()
+                : Optional.empty();
 
-                    if (roles == null) {
-                        response.sendError(HttpStatus.UNAUTHORIZED.value(), "Invalid token roles");
-                    } else {
-                        SecurityContextHolder.getContext().setAuthentication(new TokenAuthentication(token, subject, roles));
-                    }
-
-                    request.setAttribute("claims", claimsBody);
-                    request.setAttribute("jwtUserId", subject);
-                    request.setAttribute("jwtUserRoles", roles);
-
-                }
-                filterChain.doFilter(request, response);
-            } catch (MalformedJwtException e) {
-                response.sendError(HttpStatus.BAD_REQUEST.value(), "Missing or wrong token");
-            } catch (ExpiredJwtException e) {
-                response.sendError(HttpStatus.UNAUTHORIZED.value(), "Token expired or malformed");
-            }
+        String headerJwt = null;
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+          headerJwt = authHeader.substring(7);
         }
+        String token = optionalCookie.isPresent() ? optionalCookie.get().getValue() : headerJwt;
+
+        if (token != null) {
+          Jws<Claims> claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
+          Claims claimsBody = claims.getBody();
+          String subject = claimsBody.getSubject();
+          List<String> roles = claims.getBody().get(claimsRolesKey, ArrayList.class);
+
+          if (roles == null) {
+            response.sendError(HttpStatus.UNAUTHORIZED.value(), "Invalid token roles");
+          } else {
+            SecurityContextHolder.getContext()
+                .setAuthentication(new TokenAuthentication(token, subject, roles));
+          }
+
+          request.setAttribute("claims", claimsBody);
+          request.setAttribute("jwtUserId", subject);
+          request.setAttribute("jwtUserRoles", roles);
+        }
+        filterChain.doFilter(request, response);
+      } catch (MalformedJwtException e) {
+        response.sendError(HttpStatus.BAD_REQUEST.value(), "Missing or wrong token");
+      } catch (ExpiredJwtException e) {
+        response.sendError(HttpStatus.UNAUTHORIZED.value(), "Token expired or malformed");
+      }
     }
+  }
 }

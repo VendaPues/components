@@ -5,55 +5,61 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
 
-@Document
+@Document(collection = "sales")
 public class SaleDocument {
 
-    @Id
-    String id;
+  @Id String id;
 
-    Double amount;
+  Double amount;
 
-    List<String> products;
+  HashMap<String, Integer> products;
 
-    Date soldAt;
+  Date soldAt;
 
-    public SaleDocument() {
-    }
+  public SaleDocument() {}
 
-    public SaleDocument(SaleDto saleDto) {
-        this.amount = saleDto.getAmount();
-        this.products = saleDto.getProducts();
-        this.soldAt = new Date();
-    }
+  public SaleDocument(SaleDto saleDto) {
+    this.amount = saleDto.getAmount();
+    this.products = saleDto.getProducts();
+    this.soldAt = new Date();
+  }
 
-    public void update(SaleDto saleDto) {
-        this.amount = saleDto.getAmount();
-        this.products = saleDto.getProducts();
-    }
+  public void update(SaleDto saleDto) {
+    this.amount = saleDto.getAmount();
+    this.products = saleDto.getProducts();
+  }
 
-    public Double getAmount() {
-        return amount;
-    }
+  public String getId() {
+    return id;
+  }
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
+  public void setId(String id) {
+    this.id = id;
+  }
 
-    public List<String> getProducts() {
-        return products;
-    }
+  public Double getAmount() {
+    return amount;
+  }
 
-    public void setProducts(List<String> products) {
-        this.products = products;
-    }
+  public void setAmount(Double amount) {
+    this.amount = amount;
+  }
 
-    public Date getSoldAt() {
-        return soldAt;
-    }
+  public HashMap<String, Integer> getProducts() {
+    return products;
+  }
 
-    public void setSoldAt(Date soldAt) {
-        this.soldAt = soldAt;
-    }
+  public void setProducts(HashMap<String, Integer> products) {
+    this.products = products;
+  }
+
+  public Date getSoldAt() {
+    return soldAt;
+  }
+
+  public void setSoldAt(Date soldAt) {
+    this.soldAt = soldAt;
+  }
 }

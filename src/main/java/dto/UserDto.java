@@ -1,17 +1,8 @@
-package models;
+package dto;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
-import utils.RoleEnum;
-
-import java.util.Date;
 import java.util.List;
 
-@Document(collection = "users")
-public class UserDocument {
-
-  @Id String id;
+public class UserDto {
 
   String name;
 
@@ -19,28 +10,13 @@ public class UserDocument {
 
   String businessName;
 
-  @Indexed(unique = true)
   String email;
 
   String passwordHash;
 
-  List<RoleEnum> roles;
-
   List<String> products;
 
   List<String> sales;
-
-  Date createdAt;
-
-  public UserDocument() {}
-
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
 
   public String getName() {
     return name;
@@ -82,14 +58,6 @@ public class UserDocument {
     this.passwordHash = passwordHash;
   }
 
-  public List<RoleEnum> getRoles() {
-    return roles;
-  }
-
-  public void setRoles(List<RoleEnum> roles) {
-    this.roles = roles;
-  }
-
   public List<String> getProducts() {
     return products;
   }
@@ -104,13 +72,5 @@ public class UserDocument {
 
   public void setSales(List<String> sales) {
     this.sales = sales;
-  }
-
-  public Date getCreatedAt() {
-    return createdAt;
-  }
-
-  public void setCreatedAt(Date createdAt) {
-    this.createdAt = createdAt;
   }
 }

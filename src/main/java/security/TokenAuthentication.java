@@ -10,36 +10,38 @@ import java.util.stream.Collectors;
 
 public class TokenAuthentication extends AbstractAuthenticationToken {
 
-    String token;
+  String token;
 
-    String subject;
+  String subject;
 
-    List<String> roles;
+  List<String> roles;
 
-    public TokenAuthentication(String token, String subject, List<String> roles) {
-        super(null);
-        this.token = token;
-        this.subject = subject;
-        this.roles = roles;
-    }
+  public TokenAuthentication(String token, String subject, List<String> roles) {
+    super(null);
+    this.token = token;
+    this.subject = subject;
+    this.roles = roles;
+  }
 
-    @Override
-    public boolean isAuthenticated() {
-        return !token.isEmpty() && !subject.isEmpty() && !roles.isEmpty();
-    }
+  @Override
+  public boolean isAuthenticated() {
+    return !token.isEmpty() && !subject.isEmpty() && !roles.isEmpty();
+  }
 
-    @Override
-    public Object getCredentials() {
-        return token;
-    }
+  @Override
+  public Object getCredentials() {
+    return token;
+  }
 
-    @Override
-    public Object getPrincipal() {
-        return subject;
-    }
+  @Override
+  public Object getPrincipal() {
+    return subject;
+  }
 
-    @Override
-    public Collection<GrantedAuthority> getAuthorities() {
-        return roles.stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role)).collect(Collectors.toList());
-    }
+  @Override
+  public Collection<GrantedAuthority> getAuthorities() {
+    return roles.stream()
+        .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
+        .collect(Collectors.toList());
+  }
 }

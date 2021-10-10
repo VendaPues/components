@@ -1,7 +1,7 @@
 package utils;
 
 public enum RoleEnum {
-    ADMIN,
-    STORE,
-    SUPPLIER
+  ADMIN,
+  STORE,
+  SUPPLIER
 }

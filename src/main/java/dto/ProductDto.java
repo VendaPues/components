@@ -2,53 +2,63 @@ package dto;
 
 public class ProductDto {
 
-    private String productName;
+  String productName;
 
-    private String description;
+  String description;
 
-    private Double price;
+  Double price;
 
-    private Double salesPrice;
+  Double salesPrice;
 
-    private int stock;
+  int stock;
 
-    public String getProductName() {
-        return productName;
-    }
+  Double tax;
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
+  public String getProductName() {
+    return productName;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public void setProductName(String productName) {
+    this.productName = productName;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public Double getPrice() {
-        return price;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    public void setPrice(Double price) {
-        this.price = price;
-    }
+  public Double getPrice() {
+    return price;
+  }
 
-    public Double getSalesPrice() {
-        return salesPrice;
-    }
+  public void setPrice(Double price) {
+    this.price = price;
+  }
 
-    public void setSalesPrice(Double salesPrice) {
-        this.salesPrice = salesPrice;
-    }
+  public Double getSalesPrice() {
+    return salesPrice;
+  }
 
-    public int getStock() {
-        return stock;
-    }
+  public void setSalesPrice(Double salesPrice) {
+    this.salesPrice = salesPrice;
+  }
 
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
+  public int getStock() {
+    return stock;
+  }
+
+  public void setStock(int stock) {
+    this.stock = stock;
+  }
+
+  public Double getTax() {
+    return tax;
+  }
+
+  public void setTax(Double tax) {
+    this.tax = tax;
+  }
 }

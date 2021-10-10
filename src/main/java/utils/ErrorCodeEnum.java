@@ -1,0 +1,8 @@
+package utils;
+
+public enum ErrorCodeEnum {
+  NOT_FOUND,
+  INVALID_VALUES_EXCEPTION,
+  INVALID_USER_CREDENTIALS,
+  UNAVAILABLE_PRODUCTS
+}
