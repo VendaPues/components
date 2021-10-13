@@ -25,6 +25,8 @@ public class ProductDocument {
 
   Double tax;
 
+  String imageUrl;
+
   Date createdAt;
 
   public ProductDocument() {}
@@ -36,6 +38,7 @@ public class ProductDocument {
     this.salesPrice = dto.getSalesPrice();
     this.stock = dto.getStock();
     this.tax = dto.getTax();
+    this.imageUrl = dto.getImageUrl();
     this.createdAt = new Date();
   }
 
@@ -46,6 +49,7 @@ public class ProductDocument {
     this.salesPrice = dto.getSalesPrice();
     this.stock = dto.getStock();
     this.tax = dto.getTax();
+    this.imageUrl = dto.getImageUrl();
   }
 
   public String getId() {
@@ -102,6 +106,14 @@ public class ProductDocument {
 
   public void setTax(Double tax) {
     this.tax = tax;
+  }
+
+  public String getImageUrl() {
+    return imageUrl;
+  }
+
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
   }
 
   public Date getCreatedAt() {

@@ -14,6 +14,8 @@ public class ProductDto {
 
   Double tax;
 
+  String imageUrl;
+
   public String getProductName() {
     return productName;
   }
@@ -60,5 +62,13 @@ public class ProductDto {
 
   public void setTax(Double tax) {
     this.tax = tax;
+  }
+
+  public String getImageUrl() {
+    return imageUrl;
+  }
+
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
   }
 }
