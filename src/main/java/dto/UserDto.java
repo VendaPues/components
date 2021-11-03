@@ -1,7 +1,5 @@
 package dto;
 
-import java.util.List;
-
 public class UserDto {
 
   String name;
@@ -14,9 +12,7 @@ public class UserDto {
 
   String passwordHash;
 
-  List<String> products;
-
-  List<String> sales;
+  int role;
 
   public String getName() {
     return name;
@@ -58,19 +54,11 @@ public class UserDto {
     this.passwordHash = passwordHash;
   }
 
-  public List<String> getProducts() {
-    return products;
+  public int getRole() {
+    return role;
   }
 
-  public void setProducts(List<String> products) {
-    this.products = products;
-  }
-
-  public List<String> getSales() {
-    return sales;
-  }
-
-  public void setSales(List<String> sales) {
-    this.sales = sales;
+  public void setRole(int role) {
+    this.role = role;
   }
 }

@@ -1,14 +1,16 @@
 package models;
 
+import dto.UserDto;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import utils.RoleEnum;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Document(collection = "users")
+@Document(collection = "user")
 public class UserDocument {
 
   @Id String id;
@@ -24,7 +26,7 @@ public class UserDocument {
 
   String passwordHash;
 
-  List<RoleEnum> roles;
+  RoleEnum role;
 
   List<String> products;
 
@@ -33,6 +35,18 @@ public class UserDocument {
   Date createdAt;
 
   public UserDocument() {}
+
+  public UserDocument(UserDto userDto) {
+    this.name = userDto.getName();
+    this.lastName = userDto.getLastName();
+    this.businessName = userDto.getBusinessName();
+    this.email = userDto.getEmail();
+    this.passwordHash = userDto.getPasswordHash();
+    this.role = RoleEnum.values()[userDto.getRole()];
+    this.products = new ArrayList<>();
+    this.sales = new ArrayList<>();
+    this.createdAt = new Date();
+  }
 
   public String getId() {
     return id;
@@ -82,12 +96,12 @@ public class UserDocument {
     this.passwordHash = passwordHash;
   }
 
-  public List<RoleEnum> getRoles() {
-    return roles;
+  public RoleEnum getRole() {
+    return role;
   }
 
-  public void setRoles(List<RoleEnum> roles) {
-    this.roles = roles;
+  public void setRole(RoleEnum role) {
+    this.role = role;
   }
 
   public List<String> getProducts() {
