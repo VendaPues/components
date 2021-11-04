@@ -3,7 +3,9 @@ error\exception\UnavailableProductsException.class
 models\UserDocument.class
 error\dto\ServerErrorResponseDto.class
 error\exception\InvalidValuesException.class
+error\exception\UserAlreadyRegisteredException.class
 error\InternalServerErrorException.class
+error\handling\RestControllerErrorHandler.class
 error\exception\NotFoundException.class
 utils\RoleEnum.class
 dto\UserDto.class

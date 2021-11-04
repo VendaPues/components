@@ -10,7 +10,7 @@ public class UserDto {
 
   String email;
 
-  String passwordHash;
+  String password;
 
   int role;
 
@@ -46,12 +46,12 @@ public class UserDto {
     this.email = email;
   }
 
-  public String getPasswordHash() {
-    return passwordHash;
+  public String getPassword() {
+    return password;
   }
 
-  public void setPasswordHash(String passwordHash) {
-    this.passwordHash = passwordHash;
+  public void setPassword(String password) {
+    this.password = password;
   }
 
   public int getRole() {

@@ -5,6 +5,8 @@ C:\Users\Usuario\Documents\IETI\VendaPues\components\src\main\java\error\excepti
 C:\Users\Usuario\Documents\IETI\VendaPues\components\src\main\java\dto\SaleDto.java
 C:\Users\Usuario\Documents\IETI\VendaPues\components\src\main\java\dto\ProductDto.java
 C:\Users\Usuario\Documents\IETI\VendaPues\components\src\main\java\error\exception\UnavailableProductsException.java
+C:\Users\Usuario\Documents\IETI\VendaPues\components\src\main\java\error\handling\RestControllerErrorHandler.java
+C:\Users\Usuario\Documents\IETI\VendaPues\components\src\main\java\error\exception\UserAlreadyRegisteredException.java
 C:\Users\Usuario\Documents\IETI\VendaPues\components\src\main\java\error\dto\ServerErrorResponseDto.java
 C:\Users\Usuario\Documents\IETI\VendaPues\components\src\main\java\security\TokenAuthentication.java
 C:\Users\Usuario\Documents\IETI\VendaPues\components\src\main\java\models\UserDocument.java
