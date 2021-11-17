@@ -139,4 +139,8 @@ public class UserDocument {
     public void addNewSale(String saleId) {
         this.products.add(saleId);
     }
+
+    public void removeProduct(String productId) {
+        this.products.remove(productId);
+    }
 }
