@@ -137,7 +137,7 @@ public class UserDocument {
     }
 
     public void addNewSale(String saleId) {
-        this.products.add(saleId);
+        this.sales.add(saleId);
     }
 
     public void removeProduct(String productId) {

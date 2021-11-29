@@ -1,4 +1,3 @@
-repositories\SaleRepository.class
 dto\ProductDto.class
 error\exception\UnavailableProductsException.class
 models\UserDocument.class
@@ -7,14 +6,13 @@ error\exception\InvalidValuesException.class
 error\exception\UserAlreadyRegisteredException.class
 error\InternalServerErrorException.class
 error\handling\RestControllerErrorHandler.class
-repositories\ProductRepository.class
 error\exception\NotFoundException.class
 utils\RoleEnum.class
 dto\UserDto.class
 models\SaleDocument.class
 models\ProductDocument.class
 security\JwtRequestFilter.class
-repositories\UserRepository.class
+dto\ProductSaleDetailsDto.class
 security\TokenAuthentication.class
 utils\ErrorCodeEnum.class
 dto\SaleDto.class

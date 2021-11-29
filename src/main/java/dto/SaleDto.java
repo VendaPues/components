@@ -1,26 +1,16 @@
 package dto;
 
-import java.util.HashMap;
+import java.util.List;
 
 public class SaleDto {
 
-  Double amount;
+    List<ProductSaleDetailsDto> saleData;
 
-  HashMap<String, Integer> products;
+    public List<ProductSaleDetailsDto> getSaleData() {
+        return saleData;
+    }
 
-  public Double getAmount() {
-    return amount;
-  }
-
-  public void setAmount(Double amount) {
-    this.amount = amount;
-  }
-
-  public HashMap<String, Integer> getProducts() {
-    return products;
-  }
-
-  public void setProducts(HashMap<String, Integer> products) {
-    this.products = products;
-  }
+    public void setSaleData(List<ProductSaleDetailsDto> saleData) {
+        this.saleData = saleData;
+    }
 }
